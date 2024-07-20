@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Klasifikasi Bunga Anggrek</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+<div class="container pt-5">
+    <div class="text-center mt-5">
+        <h1 class="display-4 text-primary">Klasifikasi Bunga Anggrek</h1>
+        <p class="lead">Unggah gambar bunga anggrek untuk memperkirakan spesiesnya.</p>
+    </div>
+    <div class="card mx-auto mt-5 p-4 shadow-sm" style="max-width: 600px;">
+        <div class="card-body">
+            <h5 class="card-title text-center text-muted">Upload Gambar Bunga</h5>
+            <form action="/" method="post" enctype="multipart/form-data" class="text-center mt-4">
+                <div class="form-group">
+                    <input type="file" name="file" class="form-control-file" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Upload dan Prediksi</button>
+            </form>
+        </div>
+    </div>
+
+    {% if filename %}
+    <div class="mt-5 text-center">
+        <h3 class="mt-4">Prediksi: <span class="badge badge-info">{{ prediction }}</span></h3>
+        <img src="{{ url_for('static', filename='uploads/' ~ filename) }}" alt="Uploaded Image" class="img-fluid mt-4 shadow-sm" style="max-width: 500px; border: 1px solid #ddd; padding: 10px;">
+    </div>
+    {% endif %}
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
